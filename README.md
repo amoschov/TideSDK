@@ -1,5 +1,5 @@
-TideSDK Desktop
-===============
+TideSDK
+=======
 
 TideSDK (formerly Titanium Desktop) is a remarkable project inherited from Appcelerator. It is now managed as community open source project by group dedicated to the availability of this unique solution. 
 
