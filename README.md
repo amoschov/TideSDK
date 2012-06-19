@@ -13,7 +13,7 @@ Getting and Using TideSDK
 
 Downloads are available for the previous Titanium Desktop 1.2.0.RC4 in the interim as we prepare for our first release candidate 1.2.1.RC1. These are the downloads area for the project:
 
-[https://github.com/TideSDK/TideSDK/downloads](https://github.com/TideSDK/TideSDK/downloads)
+* [https://github.com/TideSDK/TideSDK/downloads](https://github.com/TideSDK/TideSDK/downloads)
 
 The API's will remain compatible so there is nothing to fear with a transition from Titanium Desktop and TideSDK in the near future.
 
