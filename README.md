@@ -33,11 +33,12 @@ for up to date instructions on how to build this project.
 
 Support
 -------
-- Consult https://github.com/TideSDK/TideSDK/wiki for a list of updated user and developer resources including documentation, code examples, tutorials and more
-- Report bugs or issues to https://github.com/TideSDK/TideSDK/issues
-- Come and chat with us on IRC - freenode.net #tidesdk
-- Follow us on Twitter (@tidesdk)[http://twitter.com/tidesdk]
-- Vist our blog at http://tidesdk.gitub.com/blog
+- Consult https://github.com/TideSDK/TideSDK/wiki for a list of updated user and developer resources including documentation, code examples, tutorials and more.
+- Join our mailing list at https://groups.google.com/forum/#!forum/tidesdk.
+- Report bugs or issues to https://github.com/TideSDK/TideSDK/issues. 
+- Come and chat with us on IRC - freenode.net #tidesdk.
+- Follow us on Twitter (@tidesdk)[http://twitter.com/tidesdk].
+- Vist our blog at http://tidesdk.gitub.com/blog.
 
 Legal
 -----
