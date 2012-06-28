@@ -347,7 +347,7 @@ TitaniumTest =
 	{
 		var text = [];
 		text.push("<html><body>");
-		text.push("<style>.failed{background-color:yellow;} body {background-color: white;}</style>");
+		text.push("<style>.failed{background-color:#E6324B;} .tests .success,.tests .failed { color: white; } .success{background-color:#363;} body {font-family: 'Lucida Sans', arial;background-color: white;}</style>");
 		
 		this.get_results_html(text);
 		
@@ -365,7 +365,7 @@ TitaniumTest =
 	
 	get_results_html: function(text)
 	{
-		text.push("<table>");
+		text.push("<table class='tests'>");
 
 		text.push("<tr>");
 		text.push("<td><b>Test name</b></td>");
@@ -386,7 +386,7 @@ TitaniumTest =
 
 			text.push("<tr>");
 			text.push("<td>" + this.results[i].name + "</td>");
-			text.push("<td>" + this.results[i].passed + "</td>");
+			text.push("<td class='"+(this.results[i].passes=="true"?"success":"failed")+"'>" + this.results[i].passed + "</td>");
 			text.push('<td><a href="#l' + lineno + '">' + lineno + "</a></td>");
 			text.push("<td>" + this.results[i].message + "</td>");
 			text.push("</tr>");

@@ -137,6 +137,7 @@ $(window).ready(function()
 	}
 	
 	$('div.suites').html(suites_html);
+	/* Removed to let single click show test results.
 	$('div[id^=suite_]').click(function()
 	{
 		if ($(this).find('img').attr('src').indexOf('check_on') != -1)
@@ -147,8 +148,8 @@ $(window).ready(function()
 		{
 			$(this).find('img').attr('src', 'images/check_on.png');
 		}
-	});
-	$('div[id^=suite_]').dblclick(function()
+	});*/
+	$('div[id^=suite_]').click(function()
 	{
 		var suite_name = $(this).attr('id').substr(6);
 		show_test_details(suite_name);
