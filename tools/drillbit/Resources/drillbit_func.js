@@ -386,7 +386,7 @@ TitaniumTest =
 
 			text.push("<tr>");
 			text.push("<td>" + this.results[i].name + "</td>");
-			text.push("<td class='"+(this.results[i].passed=="true"?"success":"failed")+"'>" + this.results[i].passed + "</td>");
+			text.push("<td class='"+(this.results[i].passed==true?"success":"failed")+"'>" + this.results[i].passed + "</td>");
 			text.push('<td><a href="#l' + lineno + '">' + lineno + "</a></td>");
 			text.push("<td>" + this.results[i].message + "</td>");
 			text.push("</tr>");
