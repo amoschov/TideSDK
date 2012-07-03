@@ -1,5 +1,14 @@
 describe("Notification tests",
 {
+
+    test_native_mode: function() {
+        if( false == Titanium.UI.nativeNotifications) {
+            Titanium.API.warn('Native Notifications are NOT being used.');
+        } else {
+            Titanium.API.warn('Native Notifications are in use.');
+        }
+    },
+
 	test_notification_object: function()
 	{
 		var wnd = Titanium.Notification.createNotification(parent.window);
