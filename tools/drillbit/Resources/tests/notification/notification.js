@@ -1,8 +1,17 @@
 describe("Notification tests",
 {
+
+    test_native_mode: function() {
+        if( false == Titanium.UI.nativeNotifications) {
+            Titanium.API.warn('Native Notifications are NOT being used.');
+        } else {
+            Titanium.API.warn('Native Notifications are in use.');
+        }
+    },
+
 	test_notification_object: function()
 	{
-		var wnd = Titanium.Notification.createNotification(parent.window);
+		var wnd = Titanium.UI.createNotification(parent.window);
 		
 		value_of(wnd.hide).should_be_function();
 		value_of(wnd.setCallback).should_be_function();
@@ -16,11 +25,11 @@ describe("Notification tests",
 	
 	test_it_with_large_icon_as_async: function(callback)
 	{
-		value_of(Titanium.Notification.createNotification).should_be_function();
+		value_of(Titanium.UI.createNotification).should_be_function();
 		
 		// create a notification object
 		var parent = Titanium.UI.getCurrentWindow();
-		var wnd = Titanium.Notification.createNotification(parent.window);
+		var wnd = Titanium.UI.createNotification(parent.window);
 		wnd.setTitle("title");
 		wnd.setMessage("this is a message with a big icon");
 		wnd.setIcon("app://logo_large.png");
@@ -53,11 +62,11 @@ describe("Notification tests",
 
 	test_it_with_small_icon_as_async: function(callback)
 	{
-		value_of(Titanium.Notification.createNotification).should_be_function();
+		value_of(Titanium.UI.createNotification).should_be_function();
 		
 		// create a notification object
 		var parent = Titanium.UI.getCurrentWindow();
-		var wnd = Titanium.Notification.createNotification(parent.window);
+		var wnd = Titanium.UI.createNotification(parent.window);
 		wnd.setTitle("title");
 		wnd.setMessage("this is a message with a small icon");
 		wnd.setIcon("app://logo_small.png");
