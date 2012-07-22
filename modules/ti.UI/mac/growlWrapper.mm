@@ -27,7 +27,6 @@ void showGrowlMessage(NSInteger priority, NSString *title, NSString *desc, CFDat
                                    isSticky:NO
                                clickContext:nil];
     // TODO: Memory check, make sure this is being released properly and there isn't any memory leaks
-    [growlDelegate release];
     [pool drain];
 }
 
