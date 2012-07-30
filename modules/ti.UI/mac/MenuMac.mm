@@ -148,7 +148,7 @@ NSMenu* MenuMac::CreateNative(bool lazy, bool registerNative)
 {
     // This title should be set by the callee - see MenuItemMac::NSMenuSetSubmenu
     NSMenu* menu = [[NSMenu alloc] initWithTitle:@"TopLevelMenu"];
-    MenuDelegate* delegate = [[MenuDelegate alloc] 
+    MenuDelegate<NSMenuDelegate>* delegate = [[MenuDelegate alloc] 
         initWithMenu:this
         willRegister: registerNative ? YES : NO];
 
