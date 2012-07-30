@@ -50,7 +50,6 @@ private:
     void _SetMessage(const ValueList& args, KValueRef result);
     void _SetIcon(const ValueList& args, KValueRef result);
     void _SetTimeout(const ValueList& args, KValueRef result);
-    void _SetCallback(const ValueList& args, KValueRef result);
     void _Show(const ValueList& args, KValueRef result);
     void _Hide(const ValueList& args, KValueRef result);
 
@@ -58,7 +57,6 @@ private:
     std::string message;
     std::string iconURL;
     int timeout;
-    KMethodRef clickedCallback;
     PlatformNotification notification;
 };
 
