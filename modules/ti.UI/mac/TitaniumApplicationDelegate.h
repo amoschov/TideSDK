@@ -24,10 +24,9 @@
 }
 
 -(id)initWithBinding:(Titanium::UIMac*)binding;
--(BOOL)application:(NSApplication*)theApplication
-    openFile:(NSString*)filename;
--(BOOL)application:(NSApplication*)theApplication
-    openFiles:(NSArray*)filenames;
+
+-(BOOL)application:(NSApplication*)theApplication openFile:(NSString*)filename;
+-(BOOL)application:(NSApplication*)theApplication openFiles:(NSArray*)filenames;
 -(NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication*)sender;
 
 @end
