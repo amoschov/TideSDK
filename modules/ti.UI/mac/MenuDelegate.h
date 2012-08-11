@@ -25,6 +25,10 @@
     BOOL registerNative;
 }
 - (id)initWithMenu:(Titanium::MenuMac*)menu willRegister:(BOOL)willRegister;
+
+- (NSInteger)numberOfItemsInMenu:(NSMenu *)menu;
 - (void)menuNeedsUpdate:(NSMenu *)menu;
+
 - (void)markAsDirty;
+
 @end

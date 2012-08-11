@@ -285,20 +285,11 @@ void File::IsWritable(const ValueList& args, KValueRef result)
 
 void File::Resolve(const ValueList& args, KValueRef result)
 {
-    try
-    {
-        std::string pathToResolve = args.at(0)->ToString();
+    args.VerifyException("resolve", "s");
 
-        Poco::Path path(this->filename);
-        path.resolve(pathToResolve);
-
-        File* file = new File(path.toString());
-        result->SetObject(file);
-    }
-    catch (Poco::Exception& exc)
-    {
-        throw ValueException::FromString(exc.displayText());
-    }
+    const char* subPath = args.at(0)->ToString();
+    std::string resolvedPath = FileUtils::Join(this->filename.c_str(), subPath, NULL);
+    result->SetObject(new File(resolvedPath));
 }
 
 void File::Copy(const ValueList& args, KValueRef result)
@@ -598,7 +589,7 @@ void File::GetSpaceAvailable(const ValueList& args, KValueRef result)
 
 #ifdef OS_OSX
     NSString *p = [NSString stringWithCString:this->filename.c_str() encoding:NSUTF8StringEncoding];
-    unsigned long avail = [[[[NSFileManager defaultManager] fileSystemAttributesAtPath:p] objectForKey:NSFileSystemFreeSize] longValue];
+    unsigned long avail = [[[[NSFileManager defaultManager] attributesOfFileSystemForPath:p error:nil] objectForKey:NSFileSystemFreeSize] longValue];
     diskSize = (double)avail;
 #elif defined(OS_WIN32)
     unsigned __int64 i64FreeBytesToCaller;

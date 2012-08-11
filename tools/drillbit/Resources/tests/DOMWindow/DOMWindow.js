@@ -43,7 +43,7 @@ describe("UI Window Tests",{
 		var w = window.open()
 		setTimeout(function() {
 			if (typeof(w) != "object" || typeof(w.Titanium) != 'object')
-				callback.failed("Could not find Titanium object in window");
+				callback.failed("Could not find Titanium object in window - "+typeof(w.Titanium));
 			else
 				callback.passed();
 			w.close();

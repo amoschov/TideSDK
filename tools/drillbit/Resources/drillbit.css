@@ -1,5 +1,5 @@
 body, td {
-	background-color:#292929;
+	background-color:#222;
 	font-family:"Lucida Sans",Arial;
 	color:white;
 	font-size:12px;
@@ -15,13 +15,16 @@ a {
 #actions,#passed-count, #failed-count, #assertion-count, #test-count
 {
 	float: left;
-	width: 150px;
+	width: 198px;
 	margin-bottom: 3px;
 	font-size: 12px;
+	text-align: center;
 }
 
 #actions {
-	width: 165px;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
 }
 
 #current-test
@@ -80,7 +83,7 @@ a {
 
 .suite-failed
 {
-	background: #633;
+	background: #951F2B;
 }
 
 .description {

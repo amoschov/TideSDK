@@ -19,6 +19,7 @@
 #include <JavaScriptCore/JSStringRef.h>
 #include <kroll/javascript/javascript_module.h>
 #include <kroll/javascript/javascript_module_instance.h>
+#include <kroll/ScriptController.h>
 
 #include "Menu.h"
 #include "UI.h"
@@ -38,9 +39,6 @@ UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoPtr<UserWindow> parent)
     , active(false)
     , initialized(false)
 {
-    // This method is on Titanium.UI, but will be delegated to this class.
-    this->SetMethod("getCurrentWindow", &UserWindow::_GetCurrentWindow);
-
     this->SetMethod("insertAPI", &UserWindow::_InsertAPI);
     this->SetMethod("hide", &UserWindow::_Hide);
     this->SetMethod("show", &UserWindow::_Show);
@@ -68,6 +66,7 @@ UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoPtr<UserWindow> parent)
     this->SetMethod("getY", &UserWindow::_GetY);
     this->SetMethod("setY", &UserWindow::_SetY);
     this->SetMethod("moveTo", &UserWindow::_MoveTo);
+    this->SetMethod("setSize", &UserWindow::_SetSize);
     this->SetMethod("getWidth", &UserWindow::_GetWidth);
     this->SetMethod("setWidth", &UserWindow::_SetWidth);
     this->SetMethod("getMaxWidth", &UserWindow::_GetMaxWidth);
@@ -122,6 +121,10 @@ UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoPtr<UserWindow> parent)
     this->SetMethod("setPluginsEnabled", &UserWindow::_SetPluginsEnabled);
     this->SetMethod("setDocumentEdited", &UserWindow::_SetDocumentEdited);
     this->SetMethod("isDocumentEdited", &UserWindow::_IsDocumentEdited);
+
+    // Hidden
+    this->SetMethod("getCurrentWindow", &UserWindow::_GetCurrentWindow);
+    this->SetMethod("include", &UserWindow::_IncludeScript);
 
     this->FireEvent(Event::CREATED);
 }
@@ -579,6 +582,18 @@ void UserWindow::_MoveTo(const kroll::ValueList& args, kroll::KValueRef result)
     {
         this->MoveTo(x, y);
     }
+}
+
+void UserWindow::_SetSize(const kroll::ValueList& args, kroll::KValueRef result)
+{
+    args.VerifyException("setSize", "nn");
+
+    double width = Constrain(args.GetDouble(0), config->GetMinWidth(), config->GetMaxWidth());
+    double height = Constrain(args.GetDouble(1), config->GetMinHeight(), config->GetMaxHeight());
+
+    config->SetWidth(width);
+    config->SetHeight(height);
+    SetSize(width, height);
 }
 
 void UserWindow::_GetWidth(const kroll::ValueList& args, kroll::KValueRef result)
@@ -1542,6 +1557,9 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     KObject* delegateUIAPI = new KDelegatingObject(binding, windowUIObject);
     windowTiObject->Set("UI", Value::NewObject(delegateUIAPI));
 
+    // Provide method for including other scripts within this window's context.
+    windowTiObject->Set("include", this->Get("include"));
+
     // Place the Titanium object into the window's global object
     KObjectRef delegateGlobalObject = new KDelegatingObject(
         Host::GetInstance()->GetGlobalObject(), windowTiObject);
@@ -1655,6 +1673,20 @@ void UserWindow::_SetDocumentEdited(const ValueList& args, KValueRef result)
 void UserWindow::_IsDocumentEdited(const ValueList& args, KValueRef result)
 {
     result->SetBool(this->IsDocumentEdited());
+}
+
+void UserWindow::_IncludeScript(const ValueList& args, KValueRef result)
+{
+    args.VerifyException("include", "s");
+    const char* filepath = args.at(0)->ToString();
+
+    // Convert relative path to the Resources folder to an absolute path.
+    std::string resourcesPath = Host::GetInstance()->GetApplication()->GetResourcesPath();
+    std::string absoluteFilePath = FileUtils::Join(resourcesPath.c_str(), filepath, NULL);
+
+    ScriptController* script = Host::GetInstance()->script();
+    KValueRef scriptResult = script->EvaluateFile(absoluteFilePath.c_str(), domWindow);
+    result->SetValue(scriptResult);
 }
 
 } // namespace Titanium

@@ -8,5 +8,8 @@ apidoc/docout
 build/osx
 build/linux
 build/win32
-vc80.pdb
-vc80.idb
+*.pdb
+*.idb
+.DS_Store
+thirdparty-*
+

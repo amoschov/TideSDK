@@ -63,8 +63,8 @@ UIWin::UIWin()
     // Hook app:// and ti:// URL support to WebKit
     setNormalizeURLCallback(NormalizeURLCallback);
     setURLToFileURLCallback(URLToFileURLCallback);
-    setCanPreprocessCallback(CanPreprocessURLCallback);
-    setPreprocessCallback(PreprocessURLCallback);
+    //setCanPreprocessCallback(CanPreprocessURLCallback);
+    //setPreprocessCallback(PreprocessURLCallback);
     setProxyCallback(ProxyForURLCallback);
 
     std::string cookieJarFilename(FileUtils::Join(
