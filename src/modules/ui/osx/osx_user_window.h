@@ -66,6 +66,7 @@ namespace ti
             bool IsMaximized();
             void Focus();
             void Unfocus();
+            void Notify();
             bool IsUsingChrome();
             void SetUsingChrome(bool chrome);
             bool IsUsingScrollbars();

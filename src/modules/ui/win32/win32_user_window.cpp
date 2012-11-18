@@ -670,6 +670,11 @@ void Win32UserWindow::Unfocus()
     }
 }
 
+void Win32UserWindow::Notify()
+{
+    FlashWindow(windowHandle, true);
+}
+
 void Win32UserWindow::Open()
 {
     this->InitWindow();

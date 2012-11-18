@@ -710,6 +710,11 @@ namespace ti
         this->osxBinding->WindowUnfocused(AutoPtr<OSXUserWindow>(this, true));
     }
     
+    void OSXUserWindow::Notify()
+    {
+        [NSApp requestUserAttention:NSCriticalRequest];
+    }
+    
     void OSXUserWindow::SetContextMenu(AutoMenu menu)
     {
         this->contextMenu = menu.cast<OSXMenu>();

@@ -60,6 +60,7 @@ UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoUserWindow parent) :
     this->SetMethod("unmaximize", &UserWindow::_Unmaximize);
     this->SetMethod("focus", &UserWindow::_Focus);
     this->SetMethod("unfocus", &UserWindow::_Unfocus);
+    this->SetMethod("notify", &UserWindow::_Notify);
     this->SetMethod("isUsingChrome", &UserWindow::_IsUsingChrome);
     this->SetMethod("setUsingChrome", &UserWindow::_SetUsingChrome);
     this->SetMethod("isToolWindow", &UserWindow::_IsToolWindow);
@@ -369,6 +370,11 @@ void UserWindow::_Unfocus(const tide::ValueList& args, tide::ValueRef result)
     {
         this->Unfocus();
     }
+}
+    
+void UserWindow::_Notify(const tide::ValueList& args, tide::ValueRef result)
+{
+    this->Notify();
 }
 
 void UserWindow::_IsUsingChrome(const tide::ValueList& args, tide::ValueRef result)

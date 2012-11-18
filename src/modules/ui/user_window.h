@@ -89,6 +89,8 @@ namespace ti
             void _IsMinimized(const tide::ValueList&, tide::ValueRef);
             void _Focus(const tide::ValueList&, tide::ValueRef);
             void _Unfocus(const tide::ValueList&, tide::ValueRef);
+            virtual void Notify() = 0;
+            void _Notify(const tide::ValueList&, tide::ValueRef);
             void _IsUsingChrome(const tide::ValueList&, tide::ValueRef);
             void _SetUsingChrome(const tide::ValueList&, tide::ValueRef);
             void _IsToolWindow(const tide::ValueList&, tide::ValueRef);

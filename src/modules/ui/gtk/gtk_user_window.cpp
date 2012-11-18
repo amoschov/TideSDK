@@ -870,6 +870,11 @@ namespace ti
         // a funky state.
         this->targetMaximized = true;
     }
+    
+    void GtkUserWindow::Notify()
+    {
+        gtk_window_set_urgency_hint(this->gtkWindow);
+    }
 
     void GtkUserWindow::Unmaximize()
     {

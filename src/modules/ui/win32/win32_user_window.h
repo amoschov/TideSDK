@@ -63,6 +63,7 @@ namespace ti
         bool IsMaximized();
         void Focus();
         void Unfocus();
+        void Notify();
         void Open();
         bool Close();
         double GetX();
